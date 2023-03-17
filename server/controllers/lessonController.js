@@ -19,4 +19,17 @@ const getAllLessons = async (req, res) => {
   res.status(200).json({ lessons });
 };
 
-module.exports = { createLesson, getAllLessons };
+const getLessonById = async (req, res) => {
+  const { id } = req.params;
+  const lesson = await Lesson.findById(id);
+  res.status(200).json({ lesson });
+};
+
+const updateLesson = async (req, res) => {
+  const { id } = req.params;
+  const lesson = await Lesson.findByIdAndUpdate(id, req.body, { new: true });
+
+  res.status(200).json({ lesson });
+};
+
+module.exports = { createLesson, getAllLessons, getLessonById, updateLesson };
