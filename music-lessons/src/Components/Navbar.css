@@ -1,0 +1,18 @@
+.navbar {
+  color: var(--navbarTextColor);
+}
+
+.navbar a {
+  text-decoration: none;
+  color: var(--navbarTextColor);
+}
+.navbar a:hover {
+  color: black;
+}
+
+.navbarButton {
+  background-color: var(--navbarButtonBG);
+  padding: 10px;
+  border: 1px solid var(--navbarButtonBG);
+  border-radius: 10px;
+}
