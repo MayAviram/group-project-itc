@@ -1,9 +1,11 @@
 const express = require('express');
+const { lessonsRoutes } = require('./routes/lessonRoutes');
 const { userRoutes } = require('./routes/userRoutes');
 const app = express();
 
 app.use(express.json());
 
 app.use('/api/v1/users', userRoutes);
+app.use('/api/v1/lessons', lessonsRoutes);
 
 module.exports = { app };
