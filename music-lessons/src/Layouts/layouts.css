@@ -23,10 +23,10 @@
   grid-template-rows: 60px 1fr 45px;
 }
 
-.Line.between {
+/* .Line.between {
   justify-content: space-between;
-}
+} */
 
-.navbar {
-  color: var(--whitetextcolor);
+.Line.around {
+  justify-content: space-around;
 }

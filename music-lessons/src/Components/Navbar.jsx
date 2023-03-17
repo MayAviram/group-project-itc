@@ -1,19 +1,31 @@
-import { Line, Column, Between } from "../Layouts/layouts";
+import React from "react";
+import { Line, Column, Around } from "../Layouts/layouts";
+import { Link } from "react-router-dom";
+import "./Navbar.css";
 
 export function Navbar() {
   return (
-    <Between className="navbar">
+    <Around className="navbar">
       <Column>Lessons4u</Column>
       <Line>
-        <Column>Home</Column>
-        <Column>Search</Column>
-        <Column>Recommendations</Column>
-        <Column>Profile</Column>
+        <Column>
+          <Link to="/">Home</Link>
+        </Column>
+        <Column>
+          <Link to="/search">Search</Link>
+        </Column>
+        <Column>
+          <Link to="/info">My Info</Link>
+        </Column>
       </Line>
       <Line>
-        <Column>Login</Column>
-        <Column>Become a member</Column>
+        <Column>
+          <button className="navbarButton">Login</button>
+        </Column>
+        <Column>
+          <button className="navbarButton">Join For Free</button>
+        </Column>
       </Line>
-    </Between>
+    </Around>
   );
 }
