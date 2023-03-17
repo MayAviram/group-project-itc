@@ -14,4 +14,9 @@ const createLesson = async (req, res) => {
   res.status(200).json({ lesson });
 };
 
-module.exports = { createLesson };
+const getAllLessons = async (req, res) => {
+  const lessons = await Lesson.find({});
+  res.status(200).json({ lessons });
+};
+
+module.exports = { createLesson, getAllLessons };
