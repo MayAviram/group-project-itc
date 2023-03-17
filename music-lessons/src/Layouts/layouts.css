@@ -1,0 +1,32 @@
+.Line {
+  display: flex;
+  gap: var(--gap);
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.Line.column {
+  flex-direction: column;
+}
+
+.Box {
+  background-color: var(--boxBackgroundColor);
+  border: 1px solid var(--boxBorderColor);
+  border-radius: var(--boxBorderRadius);
+}
+
+.Grid {
+  display: grid;
+  text-align: center;
+  height: 100vh;
+  grid-template-rows: 60px 1fr 45px;
+}
+
+/* .Line.between {
+  justify-content: space-between;
+} */
+
+.Line.around {
+  justify-content: space-around;
+}

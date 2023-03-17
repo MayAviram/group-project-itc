@@ -1,23 +1,53 @@
-import logo from "./logo.svg";
 import "./App.css";
+import { Grid } from "./Layouts/layouts";
+import { Navbar } from "./Components/Navbar";
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import HomePage from "./Views/HomePage";
+import SearchPage from "./Views/SearchPage";
+import Recommendations from "./Views/Recommendations";
+import Dashboard from "./Views/Dashboard";
+import MyInfo from "./Views/MyInfo";
+
+const router = createBrowserRouter([
+  {
+    element: (
+      <>
+        <Navbar />
+        <Outlet />
+      </>
+    ),
+    children: [
+      {
+        path: "/",
+        element: <HomePage />,
+      },
+      {
+        path: "/search",
+        element: <SearchPage />,
+      },
+      {
+        path: "/info",
+        element: <MyInfo />,
+      },
+      {
+        path: "info/recommendations",
+        element: <Recommendations />,
+      },
+      {
+        path: "info/dashboard",
+        element: <Dashboard />,
+      },
+    ],
+  },
+]);
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          our group project
-        </a>
-      </header>
+      <Grid>
+        <RouterProvider router={router} />
+        <footer>&#169; LESSONS 4 U</footer>
+      </Grid>
     </div>
   );
 }
