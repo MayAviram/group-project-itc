@@ -42,4 +42,30 @@ const loginUser = async (req, res) => {
   res.status(200).json({ token, user });
 };
 
-module.exports = { createUser, loginUser };
+const getUserById = async (req, res) => {
+  const { user } = req;
+  user.password = undefined;
+  res.status(200).json({ user });
+};
+
+const updateUser = async (req, res) => {
+  const { user } = req;
+  const { password } = req.body;
+
+  if (password) {
+    const salt = await bcrypt.genSalt(12);
+    const hashPassword = await bcrypt.hash(password, salt);
+
+    req.body.password = hashPassword;
+  }
+
+  const updatedUser = await User.findByIdAndUpdate(user._id, req.body, {
+    new: true,
+  });
+
+  updatedUser.password = undefined;
+
+  res.status(200).json({ updatedUser });
+};
+
+module.exports = { createUser, loginUser, getUserById, updateUser };
