@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
-const lessonSchema = new Schema({
+const teacherSchema = new Schema({
   img: {
     type: String,
     required: true,
@@ -10,12 +10,20 @@ const lessonSchema = new Schema({
     type: String,
     required: true,
   },
-  level: {
+  price: {
     type: Number,
     required: true,
   },
-  price: {
+  raiting: {
     type: Number,
+    required: true,
+  },
+  lenguage: {
+    type: String,
+    required: true,
+  },
+  location: {
+    type: String,
     required: true,
   },
   description: {
@@ -24,6 +32,6 @@ const lessonSchema = new Schema({
   },
 });
 
-const Lesson = mongoose.model('Lesson', lessonSchema);
+const Teacher = mongoose.model('Teachers', teacherSchema);
 
-module.exports = { Lesson };
+module.exports = { Teacher };

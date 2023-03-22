@@ -5,7 +5,9 @@ import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 
-import MyTeachers from "./MyTeachers";
+import MyTeachers from "../Components/MyTeachers";
+import Favorite from "../Components/Favorite";
+import ProfileDetails from "../Components/ProfileDetails";
 
 export default function MyInfo() {
   const [value, setValue] = React.useState("1");
@@ -39,8 +41,12 @@ export default function MyInfo() {
           <TabPanel value="1">
             <MyTeachers />
           </TabPanel>
-          <TabPanel value="2">Item Two</TabPanel>
-          <TabPanel value="3">Item Three</TabPanel>
+          <TabPanel value="2">
+            <ProfileDetails />
+          </TabPanel>
+          <TabPanel value="3">
+            <Favorite />
+          </TabPanel>
         </TabContext>
       </Box>
     </div>

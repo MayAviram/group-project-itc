@@ -1,5 +1,6 @@
 const { ajv } = require('../utils/ajv.config');
 const jwt = require('jsonwebtoken');
+const { User } = require('../model/userModel');
 
 const userSchema = {
   type: 'object',
@@ -72,4 +73,22 @@ const protectToken = (req, res, next) => {
   }
 };
 
-module.exports = { validateUser, protectToken };
+const existUser = async (req, res, next) => {
+  const { id } = req.params;
+
+  try {
+    const user = await User.findById(id);
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    req.user = user;
+
+    return next();
+  } catch (error) {
+    return res.status(404).json({ message: 'User not found' });
+  }
+};
+
+module.exports = { validateUser, existUser, protectToken };

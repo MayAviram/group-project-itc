@@ -4,9 +4,9 @@ import { Navbar } from "./Components/Navbar";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import HomePage from "./Views/HomePage";
 import SearchPage from "./Views/SearchPage";
-import Recommendations from "./Views/Recommendations";
 import Dashboard from "./Views/Dashboard";
 import MyInfo from "./Views/MyInfo";
+import TeacherDetails from "./Views/TeacherDetails";
 
 const router = createBrowserRouter([
   {
@@ -30,12 +30,12 @@ const router = createBrowserRouter([
         element: <MyInfo />,
       },
       {
-        path: "info/recommendations",
-        element: <Recommendations />,
+        path: "/dashboard",
+        element: <Dashboard />,
       },
       {
-        path: "info/dashboard",
-        element: <Dashboard />,
+        path: "/teacherDetails/:id",
+        element: <TeacherDetails />,
       },
     ],
   },

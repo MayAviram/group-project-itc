@@ -1,10 +1,12 @@
 :root {
-  --backgroundColor: #dd2e18;
+  --backgroundColor: #4d8fc2;
   --rowbackgroundColor: white;
   --navbarTextColor: white;
   --gap: 2rem;
-  --boxBorderColor: red;
-  --boxBorderRadius: 3%;
+  --boxBorderColor: white;
+  --boxBorderRadius: 5px;
   --boxBackgroundColor: white;
-  --navbarButtonBG: #ffab00;
+  --navbarButtonBG: #53a054;
+  --navbarButtonBGHover: #317232;
+  --inputBorderRadius: 10px;
 }
