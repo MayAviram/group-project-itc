@@ -1,5 +1,6 @@
 .Line {
   display: flex;
+  flex-wrap: wrap;
   gap: var(--gap);
   height: 100%;
   align-items: center;
