@@ -5,7 +5,9 @@ export const Line = ({ children, className }) => {
 };
 
 export const Column = (props) => {
-  return <Line {...props} className="column" />;
+  const { className: columnAddClassName = "", ...rest } = props;
+
+  return <Line {...rest} className={`column ${columnAddClassName}`} />;
 };
 
 export const Box = ({ children, className }) => {

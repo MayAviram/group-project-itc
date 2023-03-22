@@ -17,6 +17,9 @@ export function Navbar() {
         <Column>
           <Link to="/info">My Info</Link>
         </Column>
+        <Column>
+          <Link to="/dashboard">Dashboard</Link>
+        </Column>
       </Line>
       <Line>
         <Column>
