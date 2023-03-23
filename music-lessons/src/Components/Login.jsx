@@ -16,10 +16,7 @@ function Login({ setIsOpen }) {
   const handleLogin = async () => {
     try {
       console.log(formData);
-      const res = await axios.post(
-        "http://localhost:3001/user/login",
-        formData
-      );
+      const res = await axios.post("http://localhost:3001/login", formData);
       setFeedback({
         color: "green",
         content: "logged in successfully.",
@@ -43,7 +40,7 @@ function Login({ setIsOpen }) {
     <div className="login__card">
       <span onClick={() => setIsOpen(false)}>x</span>
       <div className="card__top">
-        <h2>Login</h2>
+        <h2 className="card_title"> Login</h2>
       </div>
       <div className="card__content">
         <input

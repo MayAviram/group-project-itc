@@ -1,5 +1,6 @@
 import React from "react";
 import { createPortal } from "react-dom";
+import "./Modal.css";
 
 function Modal({ Comp, isOpen, setIsOpen, options }) {
   const handleWrapperClick = (event) => {
