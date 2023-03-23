@@ -5,7 +5,7 @@ const {
   getUserById,
   updateUser,
 } = require("../controllers/userController");
-const { validateUser, existUser } = require("../middlewares/userMiddlewares");
+const { validateUser, existUser } = require("../middlewares/middleware");
 
 const router = express.Router();
 

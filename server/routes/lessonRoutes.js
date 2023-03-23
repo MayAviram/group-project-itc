@@ -5,7 +5,7 @@ const {
   getLessonById,
   updateLesson,
 } = require("../controllers/lessonController");
-const { protectToken } = require("../middlewares/userMiddlewares");
+const { protectToken } = require("../middlewares/middleware");
 const { upload } = require("../utils/multer.config");
 
 const router = express.Router();

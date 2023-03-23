@@ -50,7 +50,6 @@ export function Navbar() {
             setIsOpen={setLoginModalOpen}
             Comp={Login}
           />
-          ;
         </Column>
         <Column>
           {!isLoggedIn && (
