@@ -1,0 +1,82 @@
+/* .dasboard__sidebar {
+  width: 100%;
+} */
+
+/* .dashboard__container {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+} */
+
+/* .dasboard__sidebar {
+  height: 100%;
+  width: 75px;
+  background: white;
+  margin-right: 15px;
+} */
+
+/* .dasboard_content_container {
+  display: flex;
+} */
+
+/* .dashboard_sidebar_item {
+  padding: 15px;
+  margin: 5px;
+  border-radius: 5px;
+  font-size: 30px;
+  cursor: pointer;
+} */
+
+/* .dashboard_sidebar_item.selected {
+  background-color: #ff7cbb;
+} */
+
+.tableList td button {
+  border: none;
+  border-radius: 5px;
+  padding: 8px;
+  margin: 2px;
+  background-color: var(--navbarButtonBG);
+}
+
+/* .tableList td img {
+  width: 50px;
+} */
+
+.tableList {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  /* width: 100%; */
+  background-color: white;
+  box-shadow: var(--boxShadow);
+  /* border-radius: 15px; */
+}
+
+.tableList td,
+th {
+  /* border: 2px solid #dddddd; */
+  text-align: left;
+  padding: 8px 10px;
+}
+
+.tableList tr:nth-child(even) {
+  background-color: #efeded;
+}
+
+.tableList thead {
+  /* background-color: var(--navbarButtonBG); */
+  background-color: rgb(72, 70, 70);
+  color: white;
+}
+
+.tableList tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+.tableList tbody tr:hover {
+  background-color: rgb(214, 211, 211);
+}
+
+.teacherListContainer {
+  display: flex;
+  /* justify-content: center; */
+}
