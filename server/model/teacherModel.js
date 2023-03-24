@@ -18,7 +18,7 @@ const teacherSchema = new Schema({
     type: Number,
     required: true,
   },
-  lenguage: {
+  language: {
     type: String,
     required: true,
   },

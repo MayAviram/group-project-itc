@@ -15,6 +15,27 @@ const createTeacher = async (req, res) => {
 };
 
 const getAllTeachers = async (req, res) => {
+  const { learn, language, location } = req.query;
+
+  if (learn || language || location) {
+    const query = {};
+
+    if (learn) {
+      query.instrument = learn;
+    }
+
+    if (language) {
+      query.lenguage = lenguage;
+    }
+
+    if (location) {
+      query.location = location;
+    }
+
+    const teachers = await Teacher.find(query);
+    return res.status(200).json({ teachers });
+  }
+
   const teachers = await Teacher.find({});
   res.status(200).json({ teachers });
 };
