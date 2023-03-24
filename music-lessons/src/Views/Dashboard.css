@@ -44,7 +44,8 @@
 } */
 
 .tableList {
-  font-family: arial, sans-serif;
+  /* font-family: arial, sans-serif; */
+  font-family: var(--primaryTextFont);
   border-collapse: collapse;
   /* width: 100%; */
   background-color: white;

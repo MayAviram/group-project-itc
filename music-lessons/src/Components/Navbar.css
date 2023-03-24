@@ -1,5 +1,7 @@
 .navbar {
   color: var(--navbarTextColor);
+  font-size: 1.3rem;
+  font-weight: 500;
 }
 
 .navbar a {
@@ -10,9 +12,25 @@
   color: black;
 }
 
+.navbarButtons {
+  gap: 0.5rem;
+}
 .navbarButton {
   background-color: var(--navbarButtonBG);
   padding: 10px;
-  border: 1px solid var(--navbarButtonBG);
+  /* border: 1px solid var(--navbarButtonBG); */
+  border: none;
   border-radius: 10px;
+  box-shadow: var(--boxShadow);
+  font-family: var(--primaryTextFont);
+}
+
+.navbarButton:hover {
+  background-color: var(--navbarButtonBGHover);
+}
+
+.webNameTitle {
+  font-family: "Alkatra", cursive;
+  font-size: bold;
+  font-size: 2rem;
 }

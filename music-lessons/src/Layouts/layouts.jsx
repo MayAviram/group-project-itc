@@ -17,10 +17,10 @@ export const Grid = ({ children, className }) => {
   return <div className={`Grid ${className || ""} `}>{children}</div>;
 };
 
-// export const Between = (props) => {
-//   const { className: betweenAddClassName = "", ...rest } = props;
-//   return <Line {...rest} className={`between ${betweenAddClassName}`} />;
-// };
+export const Between = (props) => {
+  const { className: betweenAddClassName = "", ...rest } = props;
+  return <Line {...rest} className={`between ${betweenAddClassName}`} />;
+};
 
 export const Around = (props) => {
   const { className: betweenAddClassName = "", ...rest } = props;

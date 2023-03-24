@@ -4,9 +4,10 @@ import Tab from "@mui/material/Tab";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
-
 import TeachersList from "../Components/Teachers/TeachersList";
 import UsersList from "../Components/Users/UsersList";
+import "./Dashboard.css";
+
 export default function Dashboard() {
   const [value, setValue] = React.useState("1");
 
