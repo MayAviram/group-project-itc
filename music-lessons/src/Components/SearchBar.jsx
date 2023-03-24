@@ -41,8 +41,8 @@ export default function SearchBar() {
             list="typeList"
           />
           <datalist id="typeList">
-            {typeList.map((item) => {
-              return <option value={`${item}`} />;
+            {typeList.map((item, index) => {
+              return <option value={`${item}`} key={index} />;
             })}
           </datalist>
         </div>
@@ -60,8 +60,8 @@ export default function SearchBar() {
           />
 
           <datalist id="languageList">
-            {languageList.map((item) => {
-              return <option value={`${item}`} />;
+            {languageList.map((item, index) => {
+              return <option value={`${item}`} key={index} />;
             })}
           </datalist>
         </div>
@@ -75,8 +75,8 @@ export default function SearchBar() {
           />
 
           <datalist id="locationList">
-            {locationList.map((item) => {
-              return <option value={`${item}`} />;
+            {locationList.map((item, index) => {
+              return <option value={`${item}`} key={index} />;
             })}
           </datalist>
         </div>

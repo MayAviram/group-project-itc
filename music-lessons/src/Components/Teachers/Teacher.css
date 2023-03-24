@@ -1,22 +1,46 @@
 .teacherDetails {
   width: 70rem;
   height: 100%;
+  box-shadow: var(--boxShadow);
 }
 
 .teacherDetails .teacherImg {
-  width: 70%;
+  width: 60%;
   height: auto;
   border: 6px solid black;
   padding: 10px;
   border-radius: var(--boxBorderRadius);
 }
 
-.detailColumn {
-  width: 100%;
-  align-items: flex-start;
+.raitingIcon {
+  color: #ffc922;
 }
 
-.detail {
-  height: auto;
+.teacherCard {
   text-align: left;
+  box-shadow: var(--boxShadow) !important;
+}
+
+.cardBottom {
+  width: 100%;
+}
+
+.detailColumn .deatilsTable th {
+  padding: 1rem 1rem 1rem 0px;
+}
+
+.deatilsTable {
+  text-align: left;
+}
+
+.button {
+  background-color: #228dff;
+  border: none;
+  border-radius: var(--boxBorderRadius);
+  padding: 10px;
+  color: white;
+}
+
+.button:hover {
+  background-color: #1c74d2;
 }
