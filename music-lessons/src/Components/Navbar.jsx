@@ -17,7 +17,11 @@ export function Navbar() {
       setIsLoggedIn(true);
     }
   }, []);
-
+  const Logout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    window.location.href = "/";
+  };
   return (
     <Around className="navbar">
       <Column className="webNameTitle">Lessons4u</Column>
@@ -36,6 +40,11 @@ export function Navbar() {
         </Column>
       </Line>
       <Line className="navbarButtons">
+        {isLoggedIn && (
+          <button className="navbarButton" onClick={() => Logout()}>
+            Logout
+          </button>
+        )}
         {/* <Column> */}
         {!isLoggedIn && (
           <button

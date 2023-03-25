@@ -16,7 +16,10 @@ function Login({ setIsOpen }) {
   const handleLogin = async () => {
     try {
       console.log(formData);
-      const res = await axios.post("http://localhost:3001/login", formData);
+      const res = await axios.post(
+        "http://localhost:4006/api/v1/users/login",
+        formData
+      );
       setFeedback({
         color: "green",
         content: "logged in successfully.",
