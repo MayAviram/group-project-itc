@@ -21,28 +21,37 @@ export default function TeachersList() {
         // setData(data);
         setData([
           {
+            firstName: "john",
+            lastName: "ko",
             instrument: "guitarra",
             price: "8",
             raiting: "5",
             language: "Ingles",
             location: "America",
             description: "is good",
+            phoneNumber: "+1234567890",
           },
           {
+            firstName: "john",
+            lastName: "ko",
             instrument: "guitarra",
             price: "8",
             raiting: "5",
             language: "Ingles",
             location: "America",
             description: "is good",
+            phoneNumber: "+1234567890",
           },
           {
+            firstName: "john",
+            lastName: "ko",
             instrument: "guitarra",
             price: "8",
             raiting: "5",
             language: "Ingles",
             location: "America",
             description: "is good",
+            phoneNumber: "+1234567890",
           },
         ]);
       } catch (err) {
@@ -65,6 +74,7 @@ export default function TeachersList() {
               <th>Language</th>
               <th>Location</th>
               <th>Description</th>
+              <th>Phone Number</th>
               <th>ACTIONS</th>
             </tr>
           </thead>
@@ -79,6 +89,7 @@ export default function TeachersList() {
                 <td>{item.language}</td>
                 <td>{item.location}</td>
                 <td>{item.description}</td>
+                <td>{item.phoneNumber}</td>
                 <td>
                   <button
                     onClick={() => {

@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Alkatra:wght@400;500;600;700&family=Rajdhani:wght@300;400;500;600;700&display=swap");
+
 :root {
   --backgroundColor: #4d8fc2;
   --rowbackgroundColor: white;
@@ -10,4 +12,5 @@
   --navbarButtonBGHover: #317232;
   --inputBorderRadius: 10px;
   --boxShadow: 0 0 30px rgba(0, 0, 0, 0.3);
+  --primaryTextFont: "Rajdhani", sans-serif;
 }

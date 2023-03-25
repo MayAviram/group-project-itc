@@ -2,6 +2,7 @@
   background-color: rgb(184, 182, 182);
   padding: 3rem;
   border-radius: var(--inputBorderRadius);
+  box-shadow: var(--boxShadow);
 }
 
 .searchBarForm {
@@ -48,10 +49,35 @@
   border: none;
   border-top-right-radius: var(--inputBorderRadius);
   border-bottom-right-radius: var(--inputBorderRadius);
+  font-family: var(--primaryTextFont);
 }
 .searchBarContainer button:hover {
   background-color: var(--navbarButtonBGHover);
 }
 .searchResultContainer {
   flex-wrap: wrap;
+}
+
+.filterResult {
+  position: relative;
+  border: none;
+  background-color: white;
+  gap: 0;
+  border-radius: var(--inputBorderRadius);
+  padding: 0px 10px;
+}
+
+.filterResult label {
+  font-weight: bold;
+  color: var(--navbarButtonBG);
+  width: 100%;
+}
+.filterResult #filterInput {
+  width: fit-content;
+  padding: 10px 10px;
+  border: none;
+}
+
+#filterInput:focus {
+  outline: none;
 }

@@ -23,9 +23,9 @@
   grid-template-rows: 60px 1fr 45px;
 }
 
-/* .Line.between {
+.Line.between {
   justify-content: space-between;
-} */
+}
 
 .Line.around {
   justify-content: space-around;

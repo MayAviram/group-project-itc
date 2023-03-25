@@ -17,10 +17,14 @@ export function Navbar() {
       setIsLoggedIn(true);
     }
   }, []);
-
+  const Logout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    window.location.href = "/";
+  };
   return (
     <Around className="navbar">
-      <Column>Lessons4u</Column>
+      <Column className="webNameTitle">Lessons4u</Column>
       <Line>
         <Column>
           <Link to="/">Home</Link>
@@ -35,37 +39,42 @@ export function Navbar() {
           <Link to="/dashboard">Dashboard</Link>
         </Column>
       </Line>
-      <Line>
-        <Column>
-          {!isLoggedIn && (
-            <button
-              className="navbarButton"
-              onClick={() => setLoginModalOpen(true)}
-            >
-              Login
-            </button>
-          )}
-          <Modal
-            isOpen={loginModalOpen}
-            setIsOpen={setLoginModalOpen}
-            Comp={Login}
-          />
-        </Column>
-        <Column>
-          {!isLoggedIn && (
-            <button
-              onClick={() => setSignupModalOpen(true)}
-              className="navbarButton"
-            >
-              Join For Free
-            </button>
-          )}
-          <Modal
-            isOpen={signupModalOpen}
-            setIsOpen={setSignupModalOpen}
-            Comp={SignUp}
-          />
-        </Column>
+      <Line className="navbarButtons">
+        {isLoggedIn && (
+          <button className="navbarButton" onClick={() => Logout()}>
+            Logout
+          </button>
+        )}
+        {/* <Column> */}
+        {!isLoggedIn && (
+          <button
+            className="navbarButton"
+            onClick={() => setLoginModalOpen(true)}
+          >
+            Login
+          </button>
+        )}
+        <Modal
+          isOpen={loginModalOpen}
+          setIsOpen={setLoginModalOpen}
+          Comp={Login}
+        />
+        {/* </Column> */}
+        {/* <Column> */}
+        {!isLoggedIn && (
+          <button
+            onClick={() => setSignupModalOpen(true)}
+            className="navbarButton"
+          >
+            Join For Free
+          </button>
+        )}
+        <Modal
+          isOpen={signupModalOpen}
+          setIsOpen={setSignupModalOpen}
+          Comp={SignUp}
+        />
+        {/* </Column> */}
       </Line>
     </Around>
   );

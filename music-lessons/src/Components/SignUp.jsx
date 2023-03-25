@@ -16,14 +16,19 @@ function Signup({ setIsOpen }) {
 
   const [formData, setFormData] = useState({});
 
-  const handleFormChange = (e) =>
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const handleFormChange = (e) => {
+    if (e.target.name === "number") {
+      setFormData({ ...formData, [e.target.name]: parseInt(e.target.value) });
+    } else {
+      setFormData({ ...formData, [e.target.name]: e.target.value });
+    }
+  };
 
   const handleSignup = async () => {
     try {
       console.log(formData);
       const res = await axios.post(
-        "http://localhost:8080/user/signup",
+        "http://localhost:4006/api/v1/users/signup",
         formData
       );
       setFeedback({
@@ -55,7 +60,7 @@ function Signup({ setIsOpen }) {
         />
         <input
           className="card__input"
-          name="lastname"
+          name="lastName"
           onChange={(e) => handleFormChange(e)}
           type="text"
           placeholder="last name"
@@ -67,6 +72,14 @@ function Signup({ setIsOpen }) {
           onChange={(e) => handleFormChange(e)}
           type="email"
           placeholder="email"
+          required
+        />
+        <input
+          className="card__input"
+          name="number"
+          onChange={(e) => handleFormChange(e)}
+          type="number"
+          placeholder="Phone number"
           required
         />
         <input
