@@ -6,6 +6,18 @@ const teacherSchema = new Schema({
     type: String,
     required: true,
   },
+  name: {
+    type: String,
+    required: true,
+  },
+  lastName: {
+    type: String,
+    required: true,
+  },
+  number: {
+    type: Number,
+    required: true,
+  },
   instrument: {
     type: String,
     required: true,
