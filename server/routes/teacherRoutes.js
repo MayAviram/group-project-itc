@@ -8,6 +8,8 @@ const {
   getFavoritesTeachers,
   deleteTeacherFavorite,
   addTeacher,
+  deleteMyTeacher,
+  getMyTeachers,
 } = require('../controllers/teacherController');
 const { protectToken } = require('../middlewares/middleware');
 const { upload } = require('../utils/multer.config');
@@ -23,5 +25,7 @@ router.post('/favorite/:id', addFavorite);
 router.delete('/favorite/:id', deleteTeacherFavorite);
 router.get('/getfavorites', getFavoritesTeachers);
 router.post('/addmyteacher/:id', addTeacher);
+router.get('/getmyteachers', getMyTeachers);
+router.delete('/deletemyteacher/:id', deleteMyTeacher);
 
 module.exports = { teacherRoutes: router };

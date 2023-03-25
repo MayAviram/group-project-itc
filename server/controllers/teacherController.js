@@ -121,6 +121,36 @@ const addTeacher = async (req, res) => {
   res.status(200).json({ teacher });
 };
 
+const getMyTeachers = async (req, res) => {
+  const { user } = req;
+
+  const myTeachers = await MyTeachers.findOne({ userId: user }).populate(
+    'teacherId'
+  );
+
+  res.status(200).json({ myTeachers });
+};
+
+const deleteMyTeacher = async (req, res) => {
+  const { id } = req.params;
+  const { user } = req;
+
+  const myTeachers = await MyTeachers.findOne({ userId: user });
+
+  myTeachers.teacherId = myTeachers.teacherId.filter(
+    (teacher) => teacher._id.toString() !== id
+  );
+
+  if (myTeachers.teacherId.length === 0) {
+    await MyTeachers.findByIdAndDelete(myTeachers._id);
+    return res.status(200).json({ message: 'Teacher deleted' });
+  }
+
+  await myTeachers.save();
+
+  res.status(200).json({ myTeachers });
+};
+
 module.exports = {
   createTeacher,
   getAllTeachers,
@@ -130,4 +160,6 @@ module.exports = {
   getFavoritesTeachers,
   deleteTeacherFavorite,
   addTeacher,
+  getMyTeachers,
+  deleteMyTeacher,
 };
