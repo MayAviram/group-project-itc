@@ -6,6 +6,8 @@ import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import TeachersList from "../Components/Teachers/TeachersList";
 import UsersList from "../Components/Users/UsersList";
+import AddTeacher from "../Components/Teachers/AddTeacher";
+
 import "./Dashboard.css";
 
 export default function Dashboard() {
@@ -14,6 +16,7 @@ export default function Dashboard() {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
   return (
     <div>
       <Box
@@ -32,16 +35,20 @@ export default function Dashboard() {
               aria-label="lab API tabs example"
               orientation="vertical"
             >
-              <Tab label="Teachers List" value="1" />
-              <Tab label="Users List" value="2" />
+              <Tab label="Users List" value="1" />
+              <Tab label="Teachers List" value="2" />
+              <Tab label="Add teacher" value="3" />
               {/* <Tab label="Favorite" value="3" /> */}
             </TabList>
           </Box>
           <TabPanel value="1">
-            <TeachersList />
+            <UsersList />
           </TabPanel>
           <TabPanel value="2">
-            <UsersList />
+            <TeachersList />
+          </TabPanel>
+          <TabPanel value="3">
+            <AddTeacher />
           </TabPanel>
           {/* <TabPanel value="3">Item Three</TabPanel> */}
         </TabContext>

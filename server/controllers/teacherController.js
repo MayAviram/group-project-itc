@@ -1,6 +1,6 @@
-const { ref, uploadBytes, getDownloadURL } = require('firebase/storage');
-const { Teacher } = require('../model/teacherModel');
-const { storage } = require('../utils/firebase.config');
+const { ref, uploadBytes, getDownloadURL } = require("firebase/storage");
+const { Teacher } = require("../model/teacherModel");
+const { storage } = require("../utils/firebase.config");
 
 const createTeacher = async (req, res) => {
   const img = req.file;
@@ -8,8 +8,12 @@ const createTeacher = async (req, res) => {
   const imgRef = ref(storage, `images/${img.originalname}`);
   await uploadBytes(imgRef, img.buffer);
   const url = await getDownloadURL(imgRef);
-
-  const teacher = await Teacher.create({ ...req.body, img: url });
+  // const teacher = await Teacher.create({ ...req.body, img: url });
+  const teacher = await Teacher.create({
+    ...req.body,
+    img: url,
+    raiting: 1,
+  });
 
   res.status(200).json({ teacher });
 };

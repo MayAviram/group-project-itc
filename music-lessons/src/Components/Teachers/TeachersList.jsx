@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../../Views/Dashboard.css";
+
 // import Modal from "../Modal";
 
 export default function TeachersList() {
-  const [editOpen, setEditOpen] = useState(false);
-  const [viewOpen, setViewOpen] = useState(false);
+  // const [editOpen, setEditOpen] = useState(false);
+  // const [viewOpen, setViewOpen] = useState(false);
   const [data, setData] = useState([]);
 
   const [editUserDetails, setEditUserDetails] = useState({});
@@ -13,47 +14,17 @@ export default function TeachersList() {
   useEffect(() => {
     const getAllTeachers = async () => {
       try {
-        // const response = await axios.get(
-        //   "http://localhost:4006/api/v1/teachers/getall"
-        // );
-        // const data = response.data;
-        // console.log("data teacher list", data);
-        // setData(data);
-        setData([
+        const response = await axios.get(
+          "http://localhost:4006/api/v1/teachers/getall",
           {
-            firstName: "john",
-            lastName: "ko",
-            instrument: "guitarra",
-            price: "8",
-            raiting: "5",
-            language: "Ingles",
-            location: "America",
-            description: "is good",
-            phoneNumber: "+1234567890",
-          },
-          {
-            firstName: "john",
-            lastName: "ko",
-            instrument: "guitarra",
-            price: "8",
-            raiting: "5",
-            language: "Ingles",
-            location: "America",
-            description: "is good",
-            phoneNumber: "+1234567890",
-          },
-          {
-            firstName: "john",
-            lastName: "ko",
-            instrument: "guitarra",
-            price: "8",
-            raiting: "5",
-            language: "Ingles",
-            location: "America",
-            description: "is good",
-            phoneNumber: "+1234567890",
-          },
-        ]);
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+          }
+        );
+        const data = response.data.teachers;
+        // console.log("data teacher list", data.teachers);
+        setData(data);
       } catch (err) {
         console.log(err);
       }
@@ -82,29 +53,29 @@ export default function TeachersList() {
             {data.map((item, index) => (
               <tr key={index}>
                 <td>{item.name}</td>
-                <td>{item.lastname}</td>
+                <td>{item.lastName}</td>
                 <td>{item.instrument}</td>
                 <td>{item.price}</td>
                 <td>{item.raiting}</td>
                 <td>{item.language}</td>
                 <td>{item.location}</td>
                 <td>{item.description}</td>
-                <td>{item.phoneNumber}</td>
+                <td>{item.number}</td>
                 <td>
                   <button
-                    onClick={() => {
-                      setViewOpen((z) => !z);
-                      setEditUserDetails(item);
-                    }}
+                  // onClick={() => {
+                  //   setViewOpen((z) => !z);
+                  //   setEditUserDetails(item);
+                  // }}
                   >
                     <i className="fa-solid fa-eye"></i>
                   </button>
 
                   <button
-                    onClick={() => {
-                      setEditOpen((z) => !z);
-                      setEditUserDetails(item);
-                    }}
+                  // onClick={() => {
+                  //   setEditOpen((z) => !z);
+                  //   setEditUserDetails(item);
+                  // }}
                   >
                     <i className="fa-solid fa-pen-to-square"></i>
                   </button>
