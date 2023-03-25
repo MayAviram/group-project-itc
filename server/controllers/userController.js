@@ -1,6 +1,8 @@
 const { User } = require('../model/userModel');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const { Favorite } = require('../model/favoriteSchema');
+const { MyTeachers } = require('../model/myTeachersModel');
 require('dotenv').config({ path: './.env' });
 
 const createUser = async (req, res) => {
@@ -68,4 +70,14 @@ const updateUser = async (req, res) => {
   res.status(200).json({ updatedUser });
 };
 
-module.exports = { createUser, loginUser, getUserById, updateUser };
+const deleteUser = async (req, res) => {
+  const { id } = req.params;
+
+  await Favorite.deleteMany({ userId: id });
+  await MyTeachers.deleteMany({ userId: id });
+  await User.findByIdAndDelete(id);
+
+  res.status(200).json({ message: 'User deleted' });
+};
+
+module.exports = { createUser, loginUser, getUserById, updateUser, deleteUser };

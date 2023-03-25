@@ -1,4 +1,5 @@
 const express = require('express');
+const { deleteTeacher } = require('../controllers/teacherController');
 const {
   createTeacher,
   getAllTeachers,
@@ -27,5 +28,6 @@ router.get('/getfavorites', getFavoritesTeachers);
 router.post('/addmyteacher/:id', addTeacher);
 router.get('/getmyteachers', getMyTeachers);
 router.delete('/deletemyteacher/:id', deleteMyTeacher);
+router.delete('/delete/:id', deleteTeacher);
 
 module.exports = { teacherRoutes: router };

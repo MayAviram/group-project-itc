@@ -27,7 +27,7 @@ const getAllTeachers = async (req, res) => {
     }
 
     if (language) {
-      query.lenguage = lenguage;
+      query.language = language;
     }
 
     if (location) {
@@ -151,12 +151,23 @@ const deleteMyTeacher = async (req, res) => {
   res.status(200).json({ myTeachers });
 };
 
+const deleteTeacher = async (req, res) => {
+  const { id } = req.params;
+
+  await Favorite.deleteMany({ teacherId: id });
+  await MyTeachers.deleteMany({ teacherId: id });
+  await Teacher.findByIdAndDelete(id);
+
+  res.status(200).json({ message: 'Teacher deleted' });
+};
+
 module.exports = {
   createTeacher,
   getAllTeachers,
   getTeacherById,
   updateTeacher,
   addFavorite,
+  deleteTeacher,
   getFavoritesTeachers,
   deleteTeacherFavorite,
   addTeacher,
