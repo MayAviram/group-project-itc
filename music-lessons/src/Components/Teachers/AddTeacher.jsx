@@ -4,23 +4,23 @@ import "./Teacher.css";
 import axios from "axios";
 
 export default function AddTeacher() {
-  // const [formData, setFormData] = useState({});
-  const [formData, setFormData] = useState(new FormData());
+  const [feedback, setFeedback] = useState({
+    color: "green",
+    content: "",
+  });
 
+  const formData = new FormData();
   const handleFormChange = (e) => {
     if (e.target.name === "img") {
-      // setFormData({ ...formData, [e.target.name]: e.current.files[0] });
-      console.log("current", e.target.files[0]);
       formData.set(e.target.name, e.target.files[0]);
     } else {
-      // setFormData({ ...formData, [e.target.name]: e.target.value });
       formData.set(e.target.name, e.target.value);
     }
   };
 
   const addTeacher = async () => {
     try {
-      const response = await axios.post(
+      await axios.post(
         "http://localhost:4006/api/v1/teachers/create",
         formData,
         {
@@ -30,10 +30,15 @@ export default function AddTeacher() {
           },
         }
       );
-      // const data = response.data.teachers;
-      console.log("response add teacher", response);
-      // setData(data);
+      setFeedback({
+        color: "green",
+        content: "Teacher added successfully!",
+      });
     } catch (err) {
+      setFeedback({
+        color: "red",
+        content: err.response.data?.message,
+      });
       console.log(err);
     }
   };
@@ -106,6 +111,15 @@ export default function AddTeacher() {
           />
         </div>
         <div className="teacherDeatil">
+          <label>Phone Number</label>
+          <input
+            onChange={(e) => handleFormChange(e)}
+            type="number"
+            id="number"
+            name="number"
+          />
+        </div>
+        <div className="teacherDeatil">
           <label>Image</label>
           <input
             onChange={(e) => handleFormChange(e)}
@@ -119,11 +133,13 @@ export default function AddTeacher() {
           onClick={(e) => {
             e.preventDefault();
             addTeacher();
-            // checkData() && type === "add" ? insertPet() : updatePet();
           }}
         >
           add
         </button>
+        <p style={{ color: feedback.color }} className="feedback">
+          {feedback.content}
+        </p>
       </form>
     </Column>
   );

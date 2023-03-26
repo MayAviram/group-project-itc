@@ -8,7 +8,8 @@
   --boxBorderColor: white;
   --boxBorderRadius: 5px;
   --boxBackgroundColor: white;
-  --navbarButtonBG: #53a054;
+  --navbarButtonBG: #1b5e20;
+  --navbarButtonTextColor: white;
   --navbarButtonBGHover: #317232;
   --inputBorderRadius: 10px;
   --boxShadow: 0 0 30px rgba(0, 0, 0, 0.3);

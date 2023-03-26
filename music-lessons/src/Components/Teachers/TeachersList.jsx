@@ -7,9 +7,9 @@ import "../../Views/Dashboard.css";
 export default function TeachersList() {
   // const [editOpen, setEditOpen] = useState(false);
   // const [viewOpen, setViewOpen] = useState(false);
-  const [data, setData] = useState([]);
+  const [teachers, setTeachers] = useState([]);
 
-  const [editUserDetails, setEditUserDetails] = useState({});
+  // const [editUserDetails, setEditUserDetails] = useState({});
 
   useEffect(() => {
     const getAllTeachers = async () => {
@@ -22,9 +22,7 @@ export default function TeachersList() {
             },
           }
         );
-        const data = response.data.teachers;
-        // console.log("data teacher list", data.teachers);
-        setData(data);
+        setTeachers(response.data.teachers);
       } catch (err) {
         console.log(err);
       }
@@ -50,22 +48,22 @@ export default function TeachersList() {
             </tr>
           </thead>
           <tbody>
-            {data.map((item, index) => (
+            {teachers.map((teacher, index) => (
               <tr key={index}>
-                <td>{item.name}</td>
-                <td>{item.lastName}</td>
-                <td>{item.instrument}</td>
-                <td>{item.price}</td>
-                <td>{item.raiting}</td>
-                <td>{item.language}</td>
-                <td>{item.location}</td>
-                <td>{item.description}</td>
-                <td>{item.number}</td>
+                <td>{teacher.name}</td>
+                <td>{teacher.lastName}</td>
+                <td>{teacher.instrument}</td>
+                <td>{teacher.price}</td>
+                <td>{teacher.raiting}</td>
+                <td>{teacher.language}</td>
+                <td>{teacher.location}</td>
+                <td>{teacher.description}</td>
+                <td>{teacher.number}</td>
                 <td>
                   <button
                   // onClick={() => {
                   //   setViewOpen((z) => !z);
-                  //   setEditUserDetails(item);
+                  //   setEditUserDetails(teacher);
                   // }}
                   >
                     <i className="fa-solid fa-eye"></i>
@@ -74,23 +72,32 @@ export default function TeachersList() {
                   <button
                   // onClick={() => {
                   //   setEditOpen((z) => !z);
-                  //   setEditUserDetails(item);
+                  //   setEditUserDetails(teacher);
                   // }}
                   >
                     <i className="fa-solid fa-pen-to-square"></i>
                   </button>
 
                   <button
-                  // onClick={() => {
-                  //   axios.delete("http://localhost:8080/user/delete/" + i._id, {
-                  //       headers: {
-                  //         "auth-token": localStorage.getItem("token"),
-                  //       },
-                  //     })
-                  //     .then((_) => {
-                  //       setData((data) => data.filter((z) => z._id != i._id));
-                  //     });
-                  // }}
+                    onClick={() => {
+                      axios
+                        .delete(
+                          `http://localhost:4006/api/v1/teachers/delete/${teacher._id}`,
+                          {
+                            headers: {
+                              Authorization:
+                                "Bearer " + localStorage.getItem("token"),
+                            },
+                          }
+                        )
+                        .then((_) => {
+                          setTeachers((teacherList) =>
+                            teacherList.filter(
+                              (existTeacher) => existTeacher._id !== teacher._id
+                            )
+                          );
+                        });
+                    }}
                   >
                     <i className="fa-solid fa-trash"></i>
                   </button>

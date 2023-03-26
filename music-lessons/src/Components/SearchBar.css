@@ -49,7 +49,7 @@
   border: none;
   border-top-right-radius: var(--inputBorderRadius);
   border-bottom-right-radius: var(--inputBorderRadius);
-  font-family: var(--primaryTextFont);
+  color: var(--navbarButtonTextColor);
 }
 .searchBarContainer button:hover {
   background-color: var(--navbarButtonBGHover);

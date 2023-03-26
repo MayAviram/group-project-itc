@@ -29,6 +29,7 @@ const teacherSchema = new Schema({
   raiting: {
     type: Number,
     required: true,
+    default: 1,
   },
   language: {
     type: String,
