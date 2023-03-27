@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
@@ -18,22 +18,24 @@ import axios from "axios";
 
 export default function TeacherCard({ teacher }) {
   const navigate = useNavigate();
+  // const [favorite, setFavorite] = useState();
 
-  const setFavorite = async () => {
-    // console.log(localStorage.getItem("user"));
-    // try {
-    //   await axios.post(
-    //     `http://localhost:4006/api/v1/teachers/favorite/${teacher._id}`,
-    //     localStorage.getItem("user"),
-    //     {
-    //       headers: {
-    //         Authorization: "Bearer " + localStorage.getItem("token"),
-    //       },
-    //     }
-    //   );
-    // } catch (err) {
-    //   console.log(err);
-    // }
+  const changeFavorite = async () => {
+    console.log("teacher._id: ", teacher._id);
+    console.log("user._id", localStorage.getItem("user"));
+    try {
+      await axios.post(
+        `http://localhost:4006/api/v1/teachers/favorite/${teacher._id}`,
+        localStorage.getItem("user"),
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        }
+      );
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -72,7 +74,7 @@ export default function TeacherCard({ teacher }) {
       <CardActions disableSpacing>
         <Between className="cardBottom">
           <div>
-            <IconButton aria-label="add to favorites" onClick={setFavorite}>
+            <IconButton aria-label="add to favorites" onClick={changeFavorite}>
               <FavoriteIcon />
             </IconButton>
             <IconButton

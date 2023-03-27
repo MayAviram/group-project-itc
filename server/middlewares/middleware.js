@@ -1,33 +1,33 @@
-const { ajv } = require('../utils/ajv.config');
-const jwt = require('jsonwebtoken');
-const { User } = require('../model/userModel');
+const { ajv } = require("../utils/ajv.config");
+const jwt = require("jsonwebtoken");
+const { User } = require("../model/userModel");
 
 const userSchema = {
-  type: 'object',
+  type: "object",
   properties: {
     name: {
-      type: 'string',
+      type: "string",
       minLength: 2,
       maxLength: 20,
     },
     lastName: {
-      type: 'string',
+      type: "string",
       minLength: 2,
       maxLength: 20,
     },
     email: {
-      type: 'string',
-      format: 'email',
-      errorMessage: 'Invalid email',
+      type: "string",
+      format: "email",
+      errorMessage: "Invalid email",
     },
     number: {
-      type: 'number',
+      type: "number",
     },
     password: {
-      type: 'string',
+      type: "string",
       minLength: 8,
       maxLength: 20,
-      errorMessage: 'Password must be at least 8 characters',
+      errorMessage: "Password must be at least 8 characters",
     },
   },
 };
@@ -53,13 +53,12 @@ const protectToken = (req, res, next) => {
 
   if (
     req.headers.authorization &&
-    req.headers.authorization.startsWith('Bearer')
+    req.headers.authorization.startsWith("Bearer")
   ) {
-    token = req.headers.authorization.split(' ')[1];
+    token = req.headers.authorization.split(" ")[1];
   }
-
   if (!token) {
-    return res.status(401).json({ message: 'Unauthorized' });
+    return res.status(401).json({ message: "Unauthorized" });
   }
 
   try {
@@ -69,8 +68,38 @@ const protectToken = (req, res, next) => {
 
     return next();
   } catch (error) {
-    return res.status(401).json({ message: 'Unauthorized' });
+    return res.status(401).json({ message: "Unauthorized" });
   }
+
+  // try {
+  //   let token;
+
+  //   console.log("try1");
+  //   if (
+  //     req.headers.authorization &&
+  //     req.headers.authorization.startsWith("Bearer")
+  //   ) {
+  //     console.log("try2");
+  //     token = req.headers.authorization.split(" ")[1];
+  //     if (token) {
+  //       console.log("try3");
+
+  //       const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+  //       req.user = decoded.id;
+
+  //       return next();
+  //     } else {
+  //       console.log("try4");
+
+  //       return res.status(401).json({ message: "Unauthorized" });
+  //     }
+  //   }
+  // } catch (error) {
+  //   console.log("try5");
+
+  //   return res.status(401).json({ message: "Unauthorized" });
+  // }
 };
 
 const existUser = async (req, res, next) => {
@@ -80,14 +109,14 @@ const existUser = async (req, res, next) => {
     const user = await User.findById(id);
 
     if (!user) {
-      return res.status(404).json({ message: 'User not found' });
+      return res.status(404).json({ message: "User not found" });
     }
 
     req.user = user;
 
     return next();
   } catch (error) {
-    return res.status(404).json({ message: 'User not found' });
+    return res.status(404).json({ message: "User not found" });
   }
 };
 
