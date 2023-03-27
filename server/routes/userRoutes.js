@@ -5,6 +5,7 @@ const {
   getUserById,
   updateUser,
   deleteUser,
+  getAllUsers,
 } = require('../controllers/userController');
 const { validateUser, existUser } = require('../middlewares/middleware');
 
@@ -15,5 +16,6 @@ router.post('/login', loginUser);
 router.get('/:id', existUser, getUserById);
 router.put('/:id', existUser, updateUser);
 router.delete('/:id', existUser, deleteUser);
+router.get('/', getAllUsers);
 
 module.exports = { userRoutes: router };

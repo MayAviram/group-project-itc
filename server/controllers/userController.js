@@ -70,6 +70,11 @@ const updateUser = async (req, res) => {
   res.status(200).json({ updatedUser });
 };
 
+const getAllUsers = async (req, res) => {
+  const users = await User.find();
+  res.status(200).json({ users });
+};
+
 const deleteUser = async (req, res) => {
   const { id } = req.params;
 
@@ -80,4 +85,11 @@ const deleteUser = async (req, res) => {
   res.status(200).json({ message: 'User deleted' });
 };
 
-module.exports = { createUser, loginUser, getUserById, updateUser, deleteUser };
+module.exports = {
+  createUser,
+  loginUser,
+  getUserById,
+  updateUser,
+  deleteUser,
+  getAllUsers,
+};
