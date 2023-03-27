@@ -6,6 +6,7 @@ import "./Navbar.css";
 import Modal from "./Modal";
 import Login from "./Login";
 import SignUp from "./SignUp";
+import ProfileDetails from "./ProfileDetails";
 
 const admin = "admin";
 const user = "user";
@@ -13,6 +14,7 @@ export function Navbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loginModalOpen, setLoginModalOpen] = useState(false);
   const [signupModalOpen, setSignupModalOpen] = useState(false);
+  const [profileDetailsOpen, setProfileDetailsOpen] = useState(false);
 
   useEffect(() => {
     if (localStorage.getItem("token")) {
@@ -39,15 +41,28 @@ export function Navbar() {
         <Column>
           <Link to="/search">Search</Link>
         </Column>
-        <Column>{isLoggedIn && <Link to="/info">My Info</Link>}</Column>
+        {isLoggedIn &&
+          JSON.parse(localStorage.getItem("user"))?.role === user && (
+            <Link to="/info">My Info</Link>
+          )}
+
         <Column>
           {isLoggedIn &&
-            JSON.parse(localStorage.getItem("user"))?.role == admin && (
+            JSON.parse(localStorage.getItem("user"))?.role === admin && (
               <Link to="/dashboard">Dashboard</Link>
             )}
         </Column>
       </Line>
+
       <Line className="navbarButtons">
+        {isLoggedIn && (
+          <button
+            className="navbarButton"
+            onClick={() => setProfileDetailsOpen(true)}
+          >
+            {JSON.parse(localStorage.getItem("user"))?.name}
+          </button>
+        )}
         {isLoggedIn && (
           <button className="navbarButton" onClick={() => Logout()}>
             Logout
@@ -80,11 +95,11 @@ export function Navbar() {
           setIsOpen={setSignupModalOpen}
           Comp={SignUp}
         />
-        {/* <Modal
+        <Modal
           isOpen={profileDetailsOpen}
           setIsOpen={setProfileDetailsOpen}
           Comp={ProfileDetails}
-        /> */}
+        />
       </Line>
     </Around>
   );
