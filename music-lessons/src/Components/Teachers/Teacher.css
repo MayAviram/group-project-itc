@@ -4,12 +4,16 @@
   box-shadow: var(--boxShadow);
 }
 
+.imgColumn {
+  width: 50rem;
+}
 .teacherDetails .teacherImg {
-  width: 60%;
+  width: 80%;
   height: auto;
   border: 6px solid black;
   padding: 10px;
   border-radius: var(--boxBorderRadius);
+  box-sizing: border-box;
 }
 
 .raitingIcon {
@@ -23,6 +27,9 @@
 
 .cardBottom {
   width: 100%;
+}
+.detailColumn {
+  width: 50rem;
 }
 
 .detailColumn .deatilsTable th {
@@ -43,4 +50,57 @@
 
 .button:hover {
   background-color: #1c74d2;
+}
+
+.addTeacherContainer {
+  background-color: white;
+  width: fit-content;
+  padding: 3.2rem;
+  border-radius: var(--boxBorderRadius);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  box-sizing: border-box;
+  box-shadow: var(--boxShadow);
+}
+
+.teacherDeatil {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.addTeacherContainer input {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: var(--boxBorderRadius);
+  background-color: #f1f1f1;
+  border: solid 1px black;
+  margin-bottom: 10px;
+}
+
+.addTeacherContainer button {
+  all: unset;
+  text-align: center;
+  cursor: pointer;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  background-color: var(--navbarButtonBG);
+  padding: 0.2rem;
+  width: 5rem;
+  border-radius: var(--boxBorderRadius);
+  margin-top: 15px;
+}
+
+.addTeacherContainer button:hover {
+  background-color: var(--navbarButtonBGHover);
+}
+
+.addTeacherContainer .title {
+  font-size: 2rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
 }

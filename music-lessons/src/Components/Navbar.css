@@ -22,7 +22,7 @@
   border: none;
   border-radius: 10px;
   box-shadow: var(--boxShadow);
-  font-family: var(--primaryTextFont);
+  color: var(--navbarButtonTextColor);
 }
 
 .navbarButton:hover {

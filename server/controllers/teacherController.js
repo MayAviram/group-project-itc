@@ -1,8 +1,8 @@
-const { ref, uploadBytes, getDownloadURL } = require('firebase/storage');
-const { Favorite } = require('../model/favoriteSchema');
-const { MyTeachers } = require('../model/myTeachersModel');
-const { Teacher } = require('../model/teacherModel');
-const { storage } = require('../utils/firebase.config');
+const { ref, uploadBytes, getDownloadURL } = require("firebase/storage");
+const { Favorite } = require("../model/favoriteSchema");
+const { MyTeachers } = require("../model/myTeachersModel");
+const { Teacher } = require("../model/teacherModel");
+const { storage } = require("../utils/firebase.config");
 
 const createTeacher = async (req, res) => {
   const img = req.file;
@@ -10,8 +10,12 @@ const createTeacher = async (req, res) => {
   const imgRef = ref(storage, `images/${img.originalname}`);
   await uploadBytes(imgRef, img.buffer);
   const url = await getDownloadURL(imgRef);
-
   const teacher = await Teacher.create({ ...req.body, img: url });
+  // const teacher = await Teacher.create({
+  //   ...req.body,
+  //   img: url,
+  //   raiting: 1,
+  // });
 
   res.status(200).json({ teacher });
 };
@@ -84,7 +88,7 @@ const getFavoritesTeachers = async (req, res) => {
   const { user } = req;
 
   const favorites = await Favorite.findOne({ userId: user }).populate(
-    'teacherId'
+    "teacherId"
   );
 
   res.status(200).json({ favorites });
@@ -102,7 +106,7 @@ const deleteTeacherFavorite = async (req, res) => {
 
   if (favorite.teacherId.length === 0) {
     await Favorite.findByIdAndDelete(favorite._id);
-    return res.status(200).json({ message: 'Favorite deleted' });
+    return res.status(200).json({ message: "Favorite deleted" });
   }
 
   await favorite.save();
@@ -139,7 +143,7 @@ const getMyTeachers = async (req, res) => {
   const { user } = req;
 
   const myTeachers = await MyTeachers.findOne({ userId: user }).populate(
-    'teacherId'
+    "teacherId"
   );
 
   res.status(200).json({ myTeachers });
@@ -157,7 +161,7 @@ const deleteMyTeacher = async (req, res) => {
 
   if (myTeachers.teacherId.length === 0) {
     await MyTeachers.findByIdAndDelete(myTeachers._id);
-    return res.status(200).json({ message: 'Teacher deleted' });
+    return res.status(200).json({ message: "Teacher deleted" });
   }
 
   await myTeachers.save();
@@ -172,7 +176,7 @@ const deleteTeacher = async (req, res) => {
   await MyTeachers.deleteMany({ teacherId: id });
   await Teacher.findByIdAndDelete(id);
 
-  res.status(200).json({ message: 'Teacher deleted' });
+  res.status(200).json({ message: "Teacher deleted" });
 };
 
 module.exports = {

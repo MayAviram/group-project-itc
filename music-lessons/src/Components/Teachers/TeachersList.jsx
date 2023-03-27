@@ -1,59 +1,28 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../../Views/Dashboard.css";
+
 // import Modal from "../Modal";
 
 export default function TeachersList() {
-  const [editOpen, setEditOpen] = useState(false);
-  const [viewOpen, setViewOpen] = useState(false);
-  const [data, setData] = useState([]);
+  // const [editOpen, setEditOpen] = useState(false);
+  // const [viewOpen, setViewOpen] = useState(false);
+  const [teachers, setTeachers] = useState([]);
 
-  const [editUserDetails, setEditUserDetails] = useState({});
+  // const [editUserDetails, setEditUserDetails] = useState({});
 
   useEffect(() => {
     const getAllTeachers = async () => {
       try {
-        // const response = await axios.get(
-        //   "http://localhost:4006/api/v1/teachers/getall"
-        // );
-        // const data = response.data;
-        // console.log("data teacher list", data);
-        // setData(data);
-        setData([
+        const response = await axios.get(
+          "http://localhost:4006/api/v1/teachers/getall",
           {
-            firstName: "john",
-            lastName: "ko",
-            instrument: "guitarra",
-            price: "8",
-            raiting: "5",
-            language: "Ingles",
-            location: "America",
-            description: "is good",
-            phoneNumber: "+1234567890",
-          },
-          {
-            firstName: "john",
-            lastName: "ko",
-            instrument: "guitarra",
-            price: "8",
-            raiting: "5",
-            language: "Ingles",
-            location: "America",
-            description: "is good",
-            phoneNumber: "+1234567890",
-          },
-          {
-            firstName: "john",
-            lastName: "ko",
-            instrument: "guitarra",
-            price: "8",
-            raiting: "5",
-            language: "Ingles",
-            location: "America",
-            description: "is good",
-            phoneNumber: "+1234567890",
-          },
-        ]);
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+          }
+        );
+        setTeachers(response.data.teachers);
       } catch (err) {
         console.log(err);
       }
@@ -79,47 +48,56 @@ export default function TeachersList() {
             </tr>
           </thead>
           <tbody>
-            {data.map((item, index) => (
+            {teachers.map((teacher, index) => (
               <tr key={index}>
-                <td>{item.name}</td>
-                <td>{item.lastname}</td>
-                <td>{item.instrument}</td>
-                <td>{item.price}</td>
-                <td>{item.raiting}</td>
-                <td>{item.language}</td>
-                <td>{item.location}</td>
-                <td>{item.description}</td>
-                <td>{item.phoneNumber}</td>
+                <td>{teacher.name}</td>
+                <td>{teacher.lastName}</td>
+                <td>{teacher.instrument}</td>
+                <td>{teacher.price}</td>
+                <td>{teacher.raiting}</td>
+                <td>{teacher.language}</td>
+                <td>{teacher.location}</td>
+                <td>{teacher.description}</td>
+                <td>{teacher.number}</td>
                 <td>
                   <button
-                    onClick={() => {
-                      setViewOpen((z) => !z);
-                      setEditUserDetails(item);
-                    }}
+                  // onClick={() => {
+                  //   setViewOpen((z) => !z);
+                  //   setEditUserDetails(teacher);
+                  // }}
                   >
                     <i className="fa-solid fa-eye"></i>
                   </button>
 
                   <button
-                    onClick={() => {
-                      setEditOpen((z) => !z);
-                      setEditUserDetails(item);
-                    }}
+                  // onClick={() => {
+                  //   setEditOpen((z) => !z);
+                  //   setEditUserDetails(teacher);
+                  // }}
                   >
                     <i className="fa-solid fa-pen-to-square"></i>
                   </button>
 
                   <button
-                  // onClick={() => {
-                  //   axios.delete("http://localhost:8080/user/delete/" + i._id, {
-                  //       headers: {
-                  //         "auth-token": localStorage.getItem("token"),
-                  //       },
-                  //     })
-                  //     .then((_) => {
-                  //       setData((data) => data.filter((z) => z._id != i._id));
-                  //     });
-                  // }}
+                    onClick={() => {
+                      axios
+                        .delete(
+                          `http://localhost:4006/api/v1/teachers/delete/${teacher._id}`,
+                          {
+                            headers: {
+                              Authorization:
+                                "Bearer " + localStorage.getItem("token"),
+                            },
+                          }
+                        )
+                        .then((_) => {
+                          setTeachers((teacherList) =>
+                            teacherList.filter(
+                              (existTeacher) => existTeacher._id !== teacher._id
+                            )
+                          );
+                        });
+                    }}
                   >
                     <i className="fa-solid fa-trash"></i>
                   </button>

@@ -5,11 +5,10 @@ import "./SearchBar.css";
 
 export default function SearchResult({ teacherList }) {
   const [filter, setFilter] = useState("Raiting");
-
-  const [list, setList] = useState(teacherList);
+  const [list, setList] = useState();
 
   useEffect(() => {
-    if (teacherList) {
+    if (list) {
       const sortedList = [...list];
       switch (filter) {
         case "Raiting":
@@ -22,6 +21,12 @@ export default function SearchResult({ teacherList }) {
       setList(sortedList);
     }
   }, [filter]);
+
+  useEffect(() => {
+    if (teacherList) {
+      setList(teacherList);
+    }
+  }, [teacherList]);
 
   return (
     <Column>
@@ -48,7 +53,7 @@ export default function SearchResult({ teacherList }) {
           </Line>
         </>
       ) : (
-        "No teacher to show"
+        "No teachers to show"
       )}
     </Column>
   );
