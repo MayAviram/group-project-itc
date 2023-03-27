@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import "./Login.css";
 
-function ProfileDetails({ setIsOpen, options }) {
+function ProfileDetails({ options }) {
   const userData =
     options?.userData || JSON.parse(localStorage.getItem("user"));
 
@@ -27,7 +27,7 @@ function ProfileDetails({ setIsOpen, options }) {
     try {
       console.log(formData);
       const res = await axios.put(
-        `http://localhost:8080/user/update/${userData._id}`,
+        `http://localhost:4006/users/update/${userData._id}`,
         formData,
         {
           headers: {
@@ -57,12 +57,12 @@ function ProfileDetails({ setIsOpen, options }) {
 
   const handleFormChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  console.log(formData.name);
 
   return (
     <div className="login__card">
-      <span onClick={() => setIsOpen(false)}>x</span>
       <div className="card__top">
-        <h2>Profile Details</h2>
+        <h2 className="card_title"> Profile Details</h2>
       </div>
       <div className="card__content">
         <input
@@ -76,8 +76,8 @@ function ProfileDetails({ setIsOpen, options }) {
         />
         <input
           className="card__input"
-          name="lastname"
-          value={formData.lastname}
+          name="lastName"
+          value={formData.lastName}
           onChange={(e) => handleFormChange(e)}
           type="text"
           placeholder="last name"

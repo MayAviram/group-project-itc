@@ -7,6 +7,8 @@ import Modal from "./Modal";
 import Login from "./Login";
 import SignUp from "./SignUp";
 
+const admin = "admin";
+const user = "user";
 export function Navbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loginModalOpen, setLoginModalOpen] = useState(false);
@@ -24,7 +26,12 @@ export function Navbar() {
   };
   return (
     <Around className="navbar">
-      <Column className="webNameTitle">Lessons4u</Column>
+      <Column>
+        {" "}
+        <Link to="/" className="webNameTitle">
+          Lessons4u
+        </Link>
+      </Column>
       <Line>
         <Column>
           <Link to="/">Home</Link>
@@ -32,11 +39,12 @@ export function Navbar() {
         <Column>
           <Link to="/search">Search</Link>
         </Column>
+        <Column>{isLoggedIn && <Link to="/info">My Info</Link>}</Column>
         <Column>
-          <Link to="/info">My Info</Link>
-        </Column>
-        <Column>
-          <Link to="/dashboard">Dashboard</Link>
+          {isLoggedIn &&
+            JSON.parse(localStorage.getItem("user"))?.role == admin && (
+              <Link to="/dashboard">Dashboard</Link>
+            )}
         </Column>
       </Line>
       <Line className="navbarButtons">
@@ -45,7 +53,6 @@ export function Navbar() {
             Logout
           </button>
         )}
-        {/* <Column> */}
         {!isLoggedIn && (
           <button
             className="navbarButton"
@@ -59,8 +66,7 @@ export function Navbar() {
           setIsOpen={setLoginModalOpen}
           Comp={Login}
         />
-        {/* </Column> */}
-        {/* <Column> */}
+
         {!isLoggedIn && (
           <button
             onClick={() => setSignupModalOpen(true)}
@@ -74,7 +80,11 @@ export function Navbar() {
           setIsOpen={setSignupModalOpen}
           Comp={SignUp}
         />
-        {/* </Column> */}
+        {/* <Modal
+          isOpen={profileDetailsOpen}
+          setIsOpen={setProfileDetailsOpen}
+          Comp={ProfileDetails}
+        /> */}
       </Line>
     </Around>
   );
