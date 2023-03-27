@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import "./Login.css";
 
-function ProfileDetails({ options }) {
+function ProfileDetails({ setIsOpen, options }) {
   const userData =
     options?.userData || JSON.parse(localStorage.getItem("user"));
 
@@ -61,6 +61,8 @@ function ProfileDetails({ options }) {
 
   return (
     <div className="login__card">
+      <span onClick={() => setIsOpen(false)}>x</span>
+
       <div className="card__top">
         <h2 className="card_title"> Profile Details</h2>
       </div>
