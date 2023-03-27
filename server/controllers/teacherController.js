@@ -66,17 +66,18 @@ const addFavorite = async (req, res) => {
   const teacher = await Teacher.findById(id);
 
   const favorite = await Favorite.findOne({ userId: user });
-  const existFavorite = favorite.teacherId.find(
-    (teacher) => teacher._id.toString() === id
-  );
-
-  if (existFavorite) {
-    return res.status(400).json({ message: 'Teacher already added' });
-  }
 
   if (favorite) {
-    favorite.teacherId.push(teacher._id);
-    await favorite.save();
+    const existFavorite = favorite.teacherId.find(
+      (teacher) => teacher._id.toString() === id
+    );
+
+    if (existFavorite) {
+      return res.status(400).json({ message: "Teacher already added" });
+    } else {
+      favorite.teacherId.push(teacher._id);
+      await favorite.save();
+    }
   } else {
     await Favorite.create({ userId: user, teacherId: [teacher._id] });
   }
@@ -126,7 +127,7 @@ const addTeacher = async (req, res) => {
   );
 
   if (existTeacher) {
-    return res.status(400).json({ message: 'Teacher already added' });
+    return res.status(400).json({ message: "Teacher already added" });
   }
 
   if (myTeachers) {

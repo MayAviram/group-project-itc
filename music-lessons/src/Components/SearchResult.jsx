@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import TeacherCard from "./Teachers/TeacherCard";
 import { Line, Column } from "../Layouts/layouts";
 import "./SearchBar.css";
+import axios from "axios";
 
 export default function SearchResult({ teacherList }) {
   const [filter, setFilter] = useState("Raiting");
@@ -27,6 +28,27 @@ export default function SearchResult({ teacherList }) {
       setList(teacherList);
     }
   }, [teacherList]);
+
+  useEffect(() => {
+    const CheckFavorite = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:4006/api/v1/teachers/getfavorites`,
+          localStorage.getItem("user"),
+          {
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+          }
+        );
+        console.log("response: ", response);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    CheckFavorite();
+  }, []);
 
   return (
     <Column>
