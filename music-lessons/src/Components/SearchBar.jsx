@@ -19,6 +19,9 @@ export default function SearchBar() {
   ];
 
   const searchTeacher = (e) => {
+    const isLoggedIn = localStorage.getItem("token");
+    if (!isLoggedIn)
+      return alert("You must be logged in to search for a teacher");
     e.preventDefault();
     const filter = {
       type: typeInputRef.current.value,

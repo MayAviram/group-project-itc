@@ -15,6 +15,7 @@ import StarIcon from "@mui/icons-material/Star";
 import { Between } from "../../Layouts/layouts";
 import "../Teachers/Teacher.css";
 import axios from "axios";
+import { generateLink } from "@reslear/whatsapp-link";
 
 export default function TeacherCard({ teacher }) {
   const navigate = useNavigate();
@@ -84,6 +85,17 @@ export default function TeacherCard({ teacher }) {
               }}
             >
               <InfoTwoToneIcon />
+            </IconButton>
+            <IconButton
+              color="primary"
+              onClick={() => {
+                window.location.href = generateLink(
+                  "972547790001",
+                  `Hello ${teacher.name}, I would like to hear about your lessons`
+                );
+              }}
+            >
+              Connect
             </IconButton>
           </div>
           {/* <IconButton aria-label="raiting"> */}

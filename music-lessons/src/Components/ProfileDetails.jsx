@@ -25,9 +25,8 @@ function ProfileDetails({ setIsOpen, options }) {
 
   const handleProfileChange = async () => {
     try {
-      console.log(formData);
       const res = await axios.put(
-        `http://localhost:4006/users/update/${userData._id}`,
+        `http://localhost:4006/api/v1/users/${userData._id}`,
         formData,
         {
           headers: {
@@ -35,7 +34,7 @@ function ProfileDetails({ setIsOpen, options }) {
           },
         }
       );
-      localStorage.setItem("user", JSON.stringify(res.data));
+      localStorage.setItem("user", JSON.stringify(res.data.updatedUser));
       setFeedback({
         color: "green",
         content: "profile updated successfully.",
@@ -53,11 +52,15 @@ function ProfileDetails({ setIsOpen, options }) {
     content: "",
   });
 
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({
+    name: "",
+    lastName: "",
+    email: "",
+    password: "",
+  });
 
   const handleFormChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
-  console.log(formData.name);
 
   return (
     <div className="login__card">
