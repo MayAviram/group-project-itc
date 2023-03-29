@@ -42,7 +42,6 @@ export default function SearchResult({ teacherList }) {
             },
           }
         );
-
         setFavoriteList(response.data.favorites.teacherId);
       } catch (err) {
         console.log(err);

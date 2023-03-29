@@ -16,6 +16,7 @@ import { Between } from "../../Layouts/layouts";
 import "../Teachers/Teacher.css";
 import axios from "axios";
 import { generateLink } from "@reslear/whatsapp-link";
+import React, { useEffect, useState } from "react";
 
 export default function TeacherCard({
   teacher,
