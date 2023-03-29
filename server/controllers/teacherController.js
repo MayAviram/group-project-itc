@@ -116,10 +116,11 @@ const addTeacher = async (req, res) => {
 
   const teacher = await Teacher.findById(id);
 
-  const myTeachers = await MyTeachers.findOne({ userId: user });
-  const existTeacher = myTeachers.teacherId.find(
-    myTeachers.teacherId.find((teacher) => teacher._id.toString() === id)
-  );
+  let myTeachers = await MyTeachers.findOne({ userId: user });
+  if (!myTeachers) {
+    myTeachers = { teacherId: [] };
+  }
+  const existTeacher = myTeachers.teacherId.includes(teacher._id);
 
   if (existTeacher) {
     return res.status(400).json({ message: "Teacher already added" });

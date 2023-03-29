@@ -7,6 +7,7 @@ import Modal from "./Modal";
 import Login from "./Login";
 import SignUp from "./SignUp";
 import ProfileDetails from "./ProfileDetails";
+import { AiOutlineSetting } from "react-icons/ai";
 
 const admin = "admin";
 const user = "user";
@@ -55,6 +56,7 @@ export function Navbar() {
       </Line>
 
       <Line className="navbarButtons">
+        <AiOutlineSetting />
         {isLoggedIn && (
           <button
             className="navbarButton"

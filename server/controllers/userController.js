@@ -1,9 +1,9 @@
-const { User } = require('../model/userModel');
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-const { Favorite } = require('../model/favoriteSchema');
-const { MyTeachers } = require('../model/myTeachersModel');
-require('dotenv').config({ path: './.env' });
+const { User } = require("../model/userModel");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const { Favorite } = require("../model/favoriteSchema");
+const { MyTeachers } = require("../model/myTeachersModel");
+require("dotenv").config({ path: "./.env" });
 
 const createUser = async (req, res) => {
   const { name, lastName, email, number, password } = req.body;
@@ -11,7 +11,7 @@ const createUser = async (req, res) => {
   const user = await User.findOne({ email });
 
   if (user) {
-    return res.status(400).json({ message: 'User already exists' });
+    return res.status(400).json({ message: "User already exists" });
   }
 
   const salt = await bcrypt.genSalt(12);
@@ -32,11 +32,10 @@ const loginUser = async (req, res) => {
   const user = await User.findOne({ email });
 
   if (!user || !(await bcrypt.compare(password, user.password))) {
-    return res.status(400).json({ message: 'Credentials invalids' });
+    return res.status(400).json({ message: "Credentials invalids" });
   }
-
   const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
-    expiresIn: process.env.JWT_EXPIRES_IN,
+    // expiresIn: process.env.JWT_EXPIRES_IN,
   });
 
   user.password = undefined;
@@ -82,7 +81,7 @@ const deleteUser = async (req, res) => {
   await MyTeachers.deleteMany({ userId: id });
   await User.findByIdAndDelete(id);
 
-  res.status(200).json({ message: 'User deleted' });
+  res.status(200).json({ message: "User deleted" });
 };
 
 module.exports = {

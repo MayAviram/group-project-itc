@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
@@ -15,6 +14,7 @@ import StarIcon from "@mui/icons-material/Star";
 import { Between } from "../../Layouts/layouts";
 import "../Teachers/Teacher.css";
 import axios from "axios";
+import { generateLink } from "@reslear/whatsapp-link";
 
 export default function TeacherCard({
   teacher,
@@ -59,6 +59,26 @@ export default function TeacherCard({
 
         // removeTeacher(teacher._id);
       }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleConnect = async () => {
+    window.open(
+      generateLink(teacher.number, "Hello, I'm interested in your lessons")
+    );
+
+    try {
+      await axios.post(
+        `http://localhost:4006/api/v1/teachers/addmyteacher/${teacher._id}`,
+        {},
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        }
+      );
     } catch (err) {
       console.log(err);
     }
@@ -117,6 +137,14 @@ export default function TeacherCard({
               }}
             >
               <InfoTwoToneIcon />
+            </IconButton>
+            <IconButton
+              color="primary"
+              onClick={() => {
+                handleConnect();
+              }}
+            >
+              Connect
             </IconButton>
           </div>
           {/* <IconButton aria-label="raiting"> */}
