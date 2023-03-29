@@ -68,6 +68,7 @@ const protectToken = (req, res, next) => {
 
     return next();
   } catch (error) {
+    console.log(error);
     return res.status(401).json({ message: "Unauthorized" });
   }
 

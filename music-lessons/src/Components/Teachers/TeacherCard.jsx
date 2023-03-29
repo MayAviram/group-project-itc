@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
@@ -28,6 +27,26 @@ export default function TeacherCard({ teacher }) {
       await axios.post(
         `http://localhost:4006/api/v1/teachers/favorite/${teacher._id}`,
         localStorage.getItem("user"),
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        }
+      );
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleConnect = async () => {
+    window.open(
+      generateLink(teacher.number, "Hello, I'm interested in your lessons")
+    );
+
+    try {
+      await axios.post(
+        `http://localhost:4006/api/v1/teachers/addmyteacher/${teacher._id}`,
+        {},
         {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("token"),
@@ -89,10 +108,7 @@ export default function TeacherCard({ teacher }) {
             <IconButton
               color="primary"
               onClick={() => {
-                window.location.href = generateLink(
-                  "972547790001",
-                  `Hello ${teacher.name}, I would like to hear about your lessons`
-                );
+                handleConnect();
               }}
             >
               Connect
