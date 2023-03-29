@@ -86,15 +86,14 @@ export default function TeacherCard({
   };
 
   useEffect(() => {
-    // const checkFavorite = () => {
-    const find = favoriteList.some((item) => item._id === teacher._id);
-    if (find) {
-      setFavorite(true);
-    } else {
-      setFavorite(false);
+    if (favoriteList) {
+      const find = favoriteList.some((item) => item._id === teacher._id);
+      if (find) {
+        setFavorite(true);
+      } else {
+        setFavorite(false);
+      }
     }
-    // };
-    // checkFavorite();
   }, [favoriteList]);
 
   return (

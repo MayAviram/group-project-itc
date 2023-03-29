@@ -3,10 +3,9 @@ import axios from "axios";
 import TeacherCard from "./Teachers/TeacherCard";
 import { Line } from "../Layouts/layouts";
 
-// import Modal from "../Modal";
-
 export default function MyTeachers() {
   const [MyTeachers, setMyTeachers] = useState([]);
+  const [message, setMessage] = useState("loading...");
 
   useEffect(() => {
     const getMyTeachers = async () => {
@@ -19,20 +18,37 @@ export default function MyTeachers() {
             },
           }
         );
-        setMyTeachers(response.data.myTeachers);
-        console.log(response.data.myTeachers);
+        console.log(response);
+        if (
+          response.data.myTeachers &&
+          response.data.myTeachers.teacherId.length > 0
+        ) {
+          setMyTeachers(response.data.myTeachers.teacherId);
+          setMessage("");
+        } else {
+          setMessage("There is no myTeachers");
+        }
       } catch (err) {
         console.log(err);
       }
     };
     getMyTeachers();
   }, []);
+
   return (
-    <Line className=" searchResultContainer">
-      {MyTeachers.teacherId &&
-        MyTeachers.teacherId.map((MyTeacher, index) => (
-          <TeacherCard key={index} teacher={MyTeacher} />
-        ))}
+    <Line>
+      {MyTeachers
+        ? MyTeachers.map((teacher, index) => {
+            return (
+              <TeacherCard
+                teacher={teacher}
+                key={index}
+                myTeachers={MyTeachers}
+                setmyTeachers={setMyTeachers}
+              />
+            );
+          })
+        : message}
     </Line>
   );
 }
