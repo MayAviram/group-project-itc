@@ -42,7 +42,9 @@ export default function SearchResult({ teacherList }) {
             },
           }
         );
-        setFavoriteList(response.data.favorites.teacherId);
+        if (response.data.favorites) {
+          setFavoriteList(response.data.favorites.teacherId);
+        }
       } catch (err) {
         console.log(err);
       }

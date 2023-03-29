@@ -18,15 +18,16 @@ export default function MyTeachers() {
             },
           }
         );
-        console.log(response);
-        if (
-          response.data.myTeachers &&
-          response.data.myTeachers.teacherId.length > 0
-        ) {
-          setMyTeachers(response.data.myTeachers.teacherId);
-          setMessage("");
+        console.log(response.data);
+        if (response.data.myTeachers !== null) {
+          if (response.data.myTeachers.teacherId.length > 0) {
+            setMyTeachers(response.data.myTeachers.teacherId);
+            setMessage("");
+          } else {
+            setMessage("There is no myTeachers");
+          }
         } else {
-          setMessage("There is no myTeachers");
+          console.log("here");
         }
       } catch (err) {
         console.log(err);
