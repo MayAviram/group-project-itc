@@ -11,11 +11,6 @@ const createTeacher = async (req, res) => {
   await uploadBytes(imgRef, img.buffer);
   const url = await getDownloadURL(imgRef);
   const teacher = await Teacher.create({ ...req.body, img: url });
-  // const teacher = await Teacher.create({
-  //   ...req.body,
-  //   img: url,
-  //   raiting: 1,
-  // });
 
   res.status(200).json({ teacher });
 };

@@ -1,21 +1,21 @@
 import React, { useRef } from "react";
 import "./SearchBar.css";
 
-export default function SearchBar() {
+export default function SearchBar({ setParams }) {
   const typeInputRef = useRef();
-  // const priceInputRef = useRef();
   const languageInputRef = useRef();
   const locationInputRef = useRef();
 
   const typeList = ["guitarra", "piano", "guitara"];
   const languageList = ["english", "hebrew", "spanish"];
   const locationList = [
-    "tel-aviv",
+    "tel aviv",
     "jerusalem",
-    "bat-yam",
+    "bat yam",
     "heifa",
     "ramat-gan",
     "eilat",
+    "Europa",
   ];
 
   const searchTeacher = (e) => {
@@ -25,11 +25,12 @@ export default function SearchBar() {
     e.preventDefault();
     const filter = {
       type: typeInputRef.current.value,
-      // price: priceInputRef.current.value,
       language: languageInputRef.current.value,
       location: locationInputRef.current.value,
     };
     // console.log("filter", filter);
+
+    setParams(filter);
   };
   return (
     <div className="searchBarContainer">
