@@ -18,7 +18,10 @@ export default function Favorite() {
           }
         );
 
-        if (response && response.data.favorites.teacherId.length > 0) {
+        if (
+          response.data.favorites &&
+          response.data.favorites.teacherId.length > 0
+        ) {
           setFavoriteList(response.data.favorites.teacherId);
           setMeassage("");
         } else {

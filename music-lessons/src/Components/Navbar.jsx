@@ -56,13 +56,17 @@ export function Navbar() {
       </Line>
 
       <Line className="navbarButtons">
-        <AiOutlineSetting />
         {isLoggedIn && (
           <button
             className="navbarButton"
             onClick={() => setProfileDetailsOpen(true)}
           >
-            {JSON.parse(localStorage.getItem("user"))?.name}
+            <Line>
+              <Around>
+                <AiOutlineSetting />
+                {JSON.parse(localStorage.getItem("user"))?.name}
+              </Around>
+            </Line>
           </button>
         )}
         {isLoggedIn && (
