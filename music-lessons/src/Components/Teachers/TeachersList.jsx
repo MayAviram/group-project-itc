@@ -2,14 +2,12 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../../Views/Dashboard.css";
 
-// import Modal from "../Modal";
-
+import Modal from "../Modal";
+import EditTeacher from "../Teachers/EditTeacher";
 export default function TeachersList() {
-  // const [editOpen, setEditOpen] = useState(false);
-  // const [viewOpen, setViewOpen] = useState(false);
+  const [editOpen, setEditOpen] = useState(false);
+  const [editTeacherDetails, setEditTeacherDetails] = useState({});
   const [teachers, setTeachers] = useState([]);
-
-  // const [editUserDetails, setEditUserDetails] = useState({});
 
   useEffect(() => {
     const getAllTeachers = async () => {
@@ -59,20 +57,11 @@ export default function TeachersList() {
               <td>{teacher.description}</td>
               <td>{teacher.number}</td>
               <td>
-                {/* <button
-                onClick={() => {
-                  setViewOpen((z) => !z);
-                  setEditUserDetails(teacher);
-                }}
-                >
-                  <i className="fa-solid fa-eye"></i>
-                </button> */}
-
                 <button
-                // onClick={() => {
-                //   setEditOpen((z) => !z);
-                //   setEditUserDetails(teacher);
-                // }}
+                  onClick={() => {
+                    setEditOpen((z) => !z);
+                    setEditTeacherDetails(teacher);
+                  }}
                 >
                   <i className="fa-solid fa-pen-to-square"></i>
                 </button>
@@ -104,19 +93,12 @@ export default function TeachersList() {
             </tr>
           ))}
 
-          {/* <Modal
+          <Modal
             isOpen={editOpen}
             setIsOpen={setEditOpen}
-            Comp={ProfileDetails}
-            options={{ userData: editUserDetails }}
+            Comp={EditTeacher}
+            options={{ teacherData: editTeacherDetails }}
           />
-
-          <Modal
-            isOpen={viewOpen}
-            setIsOpen={setViewOpen}
-            Comp={ViewUserPets}
-            options={{ userData: editUserDetails }}
-          /> */}
         </tbody>
       </table>
     </div>

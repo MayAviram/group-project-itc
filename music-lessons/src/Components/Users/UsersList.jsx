@@ -2,14 +2,12 @@ import React, { useEffect, useState } from "react";
 import "../../Views/Dashboard.css";
 import axios from "axios";
 
-// import Modal from "../Modal";
-
+import Modal from "../Modal";
+import ProfileDetails from "../ProfileDetails";
 export default function UsersList() {
-  // const [editOpen, setEditOpen] = useState(false);
-  // const [viewOpen, setViewOpen] = useState(false);
+  const [editOpen, setEditOpen] = useState(false);
+  const [editUserDetails, setEditUserDetails] = useState({});
   const [users, setUsers] = useState([]);
-
-  // const [editUserDetails, setEditUserDetails] = useState({});
 
   useEffect(() => {
     const getAllUsers = async () => {
@@ -19,7 +17,6 @@ export default function UsersList() {
             Authorization: "Bearer " + localStorage.getItem("token"),
           },
         });
-        // console.log();
         setUsers(response.data.users);
       } catch (err) {
         console.log(err);
@@ -53,20 +50,11 @@ export default function UsersList() {
                 <td>{user.role}</td>
 
                 <td>
-                  {/* <button
-                  onClick={() => {
-                    setViewOpen((z) => !z);
-                    setEditUserDetails(user);
-                  }}
-                  >
-                    <i className="fa-solid fa-eye"></i>
-                  </button> */}
-
                   <button
-                  // onClick={() => {
-                  //   setEditOpen((z) => !z);
-                  //   setEditUserDetails(user);
-                  // }}
+                    onClick={() => {
+                      setEditOpen((z) => !z);
+                      setEditUserDetails(user);
+                    }}
                   >
                     <i className="fa-solid fa-pen-to-square"></i>
                   </button>
@@ -98,19 +86,12 @@ export default function UsersList() {
               </tr>
             ))}
 
-            {/* <Modal
-            isOpen={editOpen}
-            setIsOpen={setEditOpen}
-            Comp={ProfileDetails}
-            options={{ userData: editUserDetails }}
-          />
-
-          <Modal
-            isOpen={viewOpen}
-            setIsOpen={setViewOpen}
-            Comp={ViewUserPets}
-            options={{ userData: editUserDetails }}
-          /> */}
+            <Modal
+              isOpen={editOpen}
+              setIsOpen={setEditOpen}
+              Comp={ProfileDetails}
+              options={{ userData: editUserDetails }}
+            />
           </tbody>
         </table>
       </div>
