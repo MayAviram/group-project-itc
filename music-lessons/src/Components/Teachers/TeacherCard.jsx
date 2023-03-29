@@ -73,7 +73,7 @@ export default function TeacherCard({
     try {
       await axios.post(
         `http://localhost:4006/api/v1/teachers/addmyteacher/${teacher._id}`,
-        {},
+
         {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("token"),
