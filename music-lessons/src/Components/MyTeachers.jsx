@@ -20,6 +20,7 @@ export default function MyTeachers() {
           }
         );
         setMyTeachers(response.data.myTeachers);
+        console.log(response.data.myTeachers);
       } catch (err) {
         console.log(err);
       }
