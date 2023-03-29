@@ -33,7 +33,7 @@ export default function EditTeacher({ setIsOpen, options }) {
       );
       setFeedback({
         color: "green",
-        content: "Teacher added successfully!",
+        content: "Teacher edited successfully!",
       });
     } catch (err) {
       setFeedback({
