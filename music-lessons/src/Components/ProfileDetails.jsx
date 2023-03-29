@@ -25,7 +25,6 @@ function ProfileDetails({ setIsOpen, options }) {
 
   const handleProfileChange = async () => {
     try {
-      console.log(formData);
       const res = await axios.put(
         `http://localhost:4006/users/update/${userData._id}`,
         formData,
@@ -57,7 +56,6 @@ function ProfileDetails({ setIsOpen, options }) {
 
   const handleFormChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
-  console.log(formData.name);
 
   return (
     <div className="login__card">

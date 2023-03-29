@@ -7,12 +7,14 @@ import axios from "axios";
 
 export default function Searchpage() {
   const [teachers, setTeachers] = useState();
+  const [params, setParams] = useState();
 
   useEffect(() => {
     const getAllTeachers = async () => {
       try {
+        const queryParams = new URLSearchParams(params).toString();
         const response = await axios.get(
-          "http://localhost:4006/api/v1/teachers/getall",
+          `http://localhost:4006/api/v1/teachers/getall?${queryParams}`,
 
           {
             headers: {
@@ -26,12 +28,12 @@ export default function Searchpage() {
       }
     };
     getAllTeachers();
-  }, []);
+  }, [params]);
 
   return (
     <Column>
       <Line>
-        <SearchBar />
+        <SearchBar setParams={setParams} />
       </Line>
       <Line>
         <SearchResult teacherList={teachers} />

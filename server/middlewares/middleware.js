@@ -70,36 +70,6 @@ const protectToken = (req, res, next) => {
   } catch (error) {
     return res.status(401).json({ message: "Unauthorized" });
   }
-
-  // try {
-  //   let token;
-
-  //   console.log("try1");
-  //   if (
-  //     req.headers.authorization &&
-  //     req.headers.authorization.startsWith("Bearer")
-  //   ) {
-  //     console.log("try2");
-  //     token = req.headers.authorization.split(" ")[1];
-  //     if (token) {
-  //       console.log("try3");
-
-  //       const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
-  //       req.user = decoded.id;
-
-  //       return next();
-  //     } else {
-  //       console.log("try4");
-
-  //       return res.status(401).json({ message: "Unauthorized" });
-  //     }
-  //   }
-  // } catch (error) {
-  //   console.log("try5");
-
-  //   return res.status(401).json({ message: "Unauthorized" });
-  // }
 };
 
 const existUser = async (req, res, next) => {
