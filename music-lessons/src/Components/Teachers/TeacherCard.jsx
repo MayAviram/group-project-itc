@@ -1,21 +1,21 @@
-import Card from "@mui/material/Card";
-import CardHeader from "@mui/material/CardHeader";
-import CardMedia from "@mui/material/CardMedia";
-import CardContent from "@mui/material/CardContent";
-import CardActions from "@mui/material/CardActions";
-import Avatar from "@mui/material/Avatar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import { green } from "@mui/material/colors";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import InfoTwoToneIcon from "@mui/icons-material/InfoTwoTone";
-import { useNavigate } from "react-router-dom";
-import StarIcon from "@mui/icons-material/Star";
-import { Between } from "../../Layouts/layouts";
-import "../Teachers/Teacher.css";
-import axios from "axios";
-import { generateLink } from "@reslear/whatsapp-link";
-import React, { useEffect, useState } from "react";
+import Card from '@mui/material/Card';
+import CardHeader from '@mui/material/CardHeader';
+import CardMedia from '@mui/material/CardMedia';
+import CardContent from '@mui/material/CardContent';
+import CardActions from '@mui/material/CardActions';
+import Avatar from '@mui/material/Avatar';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import { green } from '@mui/material/colors';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import InfoTwoToneIcon from '@mui/icons-material/InfoTwoTone';
+import { useNavigate } from 'react-router-dom';
+import StarIcon from '@mui/icons-material/Star';
+import { Between } from '../../Layouts/layouts';
+import '../Teachers/Teacher.css';
+import axios from 'axios';
+import { generateLink } from '@reslear/whatsapp-link';
+import React, { useEffect, useState } from 'react';
 
 export default function TeacherCard({
   teacher,
@@ -30,10 +30,10 @@ export default function TeacherCard({
       if (!favorite) {
         await axios.post(
           `http://localhost:4006/api/v1/teachers/favorite/${teacher._id}`,
-          localStorage.getItem("user"),
+          localStorage.getItem('user'),
           {
             headers: {
-              Authorization: "Bearer " + localStorage.getItem("token"),
+              Authorization: 'Bearer ' + localStorage.getItem('token'),
             },
           }
         );
@@ -44,7 +44,7 @@ export default function TeacherCard({
           `http://localhost:4006/api/v1/teachers/favorite/${teacher._id}`,
           {
             headers: {
-              Authorization: "Bearer " + localStorage.getItem("token"),
+              Authorization: 'Bearer ' + localStorage.getItem('token'),
             },
           }
         );
@@ -75,7 +75,7 @@ export default function TeacherCard({
         `http://localhost:4006/api/v1/teachers/addmyteacher/${teacher._id}`,
         {
           headers: {
-            Authorization: "Bearer " + localStorage.getItem("token"),
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
           },
         }
       );
@@ -96,10 +96,10 @@ export default function TeacherCard({
   }, [favoriteList]);
 
   return (
-    <Card sx={{ maxWidth: 345, minWidth: 200 }} className="teacherCard">
+    <Card sx={{ maxWidth: 345, minWidth: 200 }} className='teacherCard'>
       <CardHeader
         avatar={
-          <Avatar sx={{ bgcolor: green[900] }} aria-label="teacher">
+          <Avatar sx={{ bgcolor: green[900] }} aria-label='teacher'>
             {teacher.name.charAt(0).toUpperCase()}
           </Avatar>
         }
@@ -107,30 +107,33 @@ export default function TeacherCard({
         subheader={teacher.instrument}
       />
       <CardMedia
-        component="img"
-        height="194"
+        component='img'
+        height='194'
         image={teacher.img}
         alt={`teacher-${teacher.name}`}
       />
       <CardContent>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant='body2' color='text.secondary'>
           Price: {teacher.price}$/Hour
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant='body2' color='text.secondary'>
           Location: {teacher.location}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant='body2' color='text.secondary'>
+          Language : {teacher.language}
+        </Typography>
+        <Typography variant='body2' color='text.secondary'>
           Phone Number: {teacher.number}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <Between className="cardBottom">
+        <Between className='cardBottom'>
           <div>
-            <IconButton aria-label="add to favorites" onClick={changeFavorite}>
-              <FavoriteIcon style={{ color: favorite ? "#DC143C " : "none" }} />
+            <IconButton aria-label='add to favorites' onClick={changeFavorite}>
+              <FavoriteIcon style={{ color: favorite ? '#DC143C ' : 'none' }} />
             </IconButton>
             <IconButton
-              aria-label="info"
+              aria-label='info'
               onClick={() => {
                 navigate(`/teacherDetails/${teacher._id}`);
               }}
@@ -138,7 +141,7 @@ export default function TeacherCard({
               <InfoTwoToneIcon />
             </IconButton>
             <IconButton
-              color="primary"
+              color='primary'
               onClick={() => {
                 handleConnect();
               }}
@@ -147,11 +150,11 @@ export default function TeacherCard({
             </IconButton>
           </div>
           {/* <IconButton aria-label="raiting"> */}
-          <div className="raiting">
+          <div className='raiting'>
             {Array(parseInt(teacher.raiting))
               .fill()
               .map((item, index) => (
-                <StarIcon key={index} className="raitingIcon" />
+                <StarIcon key={index} className='raitingIcon' />
               ))}
           </div>
           {/* </IconButton> */}

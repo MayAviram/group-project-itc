@@ -1,30 +1,30 @@
-import React, { useRef } from "react";
-import "./SearchBar.css";
+import React, { useRef } from 'react';
+import './SearchBar.css';
 
 export default function SearchBar({ setParams }) {
   const typeInputRef = useRef();
   const languageInputRef = useRef();
   const locationInputRef = useRef();
 
-  const typeList = ["guitarra", "piano", "guitara"];
-  const languageList = ["english", "hebrew", "spanish"];
+  const typeList = ['guitarra', 'piano', 'guitara'];
+  const languageList = ['english', 'hebrew', 'spanish'];
   const locationList = [
-    "tel aviv",
-    "jerusalem",
-    "bat yam",
-    "heifa",
-    "ramat-gan",
-    "eilat",
-    "Europa",
+    'tel aviv',
+    'jerusalem',
+    'bat yam',
+    'heifa',
+    'ramat-gan',
+    'eilat',
+    'Europa',
   ];
 
   const searchTeacher = (e) => {
-    const isLoggedIn = localStorage.getItem("token");
+    const isLoggedIn = localStorage.getItem('token');
     if (!isLoggedIn)
-      return alert("You must be logged in to search for a teacher");
+      return alert('You must be logged in to search for a teacher');
     e.preventDefault();
     const filter = {
-      type: typeInputRef.current.value,
+      learn: typeInputRef.current.value,
       language: languageInputRef.current.value,
       location: locationInputRef.current.value,
     };
@@ -33,18 +33,18 @@ export default function SearchBar({ setParams }) {
     setParams(filter);
   };
   return (
-    <div className="searchBarContainer">
+    <div className='searchBarContainer'>
       <h2>Search Your Teacher</h2>
-      <form className="searchBarForm">
-        <div className="inputDiv">
-          <label htmlFor="searchInputType">I want to learn</label>
+      <form className='searchBarForm'>
+        <div className='inputDiv'>
+          <label htmlFor='searchInputType'>I want to learn</label>
           <input
-            type="text"
-            id="searchInputType"
+            type='text'
+            id='searchInputType'
             ref={typeInputRef}
-            list="typeList"
+            list='typeList'
           />
-          <datalist id="typeList">
+          <datalist id='typeList'>
             {typeList.map((item, index) => {
               return <option value={`${item}`} key={index} />;
             })}
@@ -54,31 +54,31 @@ export default function SearchBar({ setParams }) {
           <label htmlFor="searchInputPrice">Price Per Hour</label>
           <input type="text" id="searchInputPrice" ref={priceInputRef}/>
         </div> */}
-        <div className="inputDiv">
-          <label htmlFor="searchInputLanguage">Language</label>
+        <div className='inputDiv'>
+          <label htmlFor='searchInputLanguage'>Language</label>
           <input
-            type="text"
-            id="searchInputLanguage"
+            type='text'
+            id='searchInputLanguage'
             ref={languageInputRef}
-            list="languageList"
+            list='languageList'
           />
 
-          <datalist id="languageList">
+          <datalist id='languageList'>
             {languageList.map((item, index) => {
               return <option value={`${item}`} key={index} />;
             })}
           </datalist>
         </div>
-        <div className="inputDiv">
-          <label htmlFor="searchInputLocation">Location</label>
+        <div className='inputDiv'>
+          <label htmlFor='searchInputLocation'>Location</label>
           <input
-            type="text"
-            id="searchInputLocation"
+            type='text'
+            id='searchInputLocation'
             ref={locationInputRef}
-            list="locationList"
+            list='locationList'
           />
 
-          <datalist id="locationList">
+          <datalist id='locationList'>
             {locationList.map((item, index) => {
               return <option value={`${item}`} key={index} />;
             })}

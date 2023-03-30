@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { Line, Column } from "../Layouts/layouts";
-import SearchBar from "../Components/SearchBar";
-import SearchResult from "../Components/SearchResult";
-import "../Components/SearchBar.css";
-import axios from "axios";
+import React, { useEffect, useState } from 'react';
+import { Line, Column } from '../Layouts/layouts';
+import SearchBar from '../Components/SearchBar';
+import SearchResult from '../Components/SearchResult';
+import '../Components/SearchBar.css';
+import axios from 'axios';
 
 export default function Searchpage() {
   const [teachers, setTeachers] = useState();
@@ -18,7 +18,7 @@ export default function Searchpage() {
 
           {
             headers: {
-              Authorization: "Bearer " + localStorage.getItem("token"),
+              Authorization: 'Bearer ' + localStorage.getItem('token'),
             },
           }
         );
